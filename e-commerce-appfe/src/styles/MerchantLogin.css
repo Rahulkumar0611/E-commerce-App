@@ -1,0 +1,17 @@
+.merchantlogin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.merchantlogin form{
+    box-shadow: 0px 0px 10px black;
+    border-radius: 10px;
+    padding: 30px 50px;
+
+}
+.merchantlogin a{
+    color: white;
+    text-decoration: none;
+}
