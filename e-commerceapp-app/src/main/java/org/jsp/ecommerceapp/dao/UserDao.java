@@ -2,6 +2,7 @@ package org.jsp.ecommerceapp.dao;
 
 import java.util.Optional;
 
+import org.jsp.ecommerceapp.model.Merchant;
 import org.jsp.ecommerceapp.model.User;
 import org.jsp.ecommerceapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,14 @@ public class UserDao {
 		return userRepository.verifyUser(email, password);
 		
 	}
-	
+   
 	public Optional<User> findById(int id) {
 		return userRepository.findById(id);
 	}
+	
+	 public Optional<User> findByToken(String token){
+	    	return userRepository.findByToken(token);
+	    }
 	
 }
 

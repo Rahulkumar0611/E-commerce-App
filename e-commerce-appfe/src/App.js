@@ -13,6 +13,7 @@ import Protect from "./Components/Protect";
 function App() {
   return (
     <div className="App">
+    
       <BrowserRouter>
       <Routes>
         <Route path="/*" element={<ErrorPage/>}></Route>
@@ -21,7 +22,7 @@ function App() {
         <Route path="/user" element={<UserLogin/>}></Route>
         <Route path="/merchantsignup" element={<Merchantsignup/>}></Route>
         <Route path="/merchanthomepage/*" element={<Protect Child={Merchanthomepage}/>}></Route>
-        <Route path="/userhomepage" element={<Userhomepage/>}></Route>
+        <Route path="/userhomepage/*" element={<Userhomepage/>}></Route>
         <Route path="usersignup" element={<Usersignup/>}></Route>
         
       </Routes>

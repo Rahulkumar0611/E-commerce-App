@@ -7,12 +7,15 @@ import org.jsp.ecommerceapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/User")
@@ -22,8 +25,8 @@ public class UserController {
     private UserService userservice;
 
     @PostMapping
-    public ResponseEntity<ResponseStructure<User>> saveUser(@RequestBody User user) {
-        return userservice.saveUser(user);
+    public ResponseEntity<ResponseStructure<User>> saveUser(@RequestBody User user, HttpServletRequest request) {
+        return userservice.saveUser(user,request);
     }
 
     @PutMapping
@@ -40,5 +43,9 @@ public class UserController {
 	   	return userservice.verifyUser(email, password);
     
     }
+    @GetMapping("/activate")
+    public  ResponseEntity<ResponseStructure<String>> activate(@RequestParam  String token){
+ 	   	return userservice.activate(token);
+ 	   }
     
 }

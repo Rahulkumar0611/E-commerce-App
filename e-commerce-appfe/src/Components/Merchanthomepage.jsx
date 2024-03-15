@@ -3,6 +3,7 @@ import Merchantsnavbar from './Merchantsnavbar'
 import { Routes,Route } from "react-router-dom";
 import Productview from './Productview';
 import UpdateMerchant from "./UpdateMerchant"
+import Addproducts from './Addproducts';
 
 const Merchanthomepage = () => {
   return (
@@ -11,6 +12,7 @@ const Merchanthomepage = () => {
    <Routes>
     <Route path="/productview" element={<Productview/>}></Route>
    <Route path="/updatemerchant" element={<UpdateMerchant/>}></Route>
+   <Route path='/addproduct' element={<Addproducts/>}></Route>
    </Routes>
     </div>
   )

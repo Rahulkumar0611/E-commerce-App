@@ -3,27 +3,39 @@ package org.jsp.ecommerceapp.service;
 
 
 import java.util.Optional;
+import jakarta.servlet.http.HttpServletRequest;
+
 
 import org.jsp.ecommerceapp.dao.UserDao;
 import org.jsp.ecommerceapp.dto.ResponseStructure;
+import org.jsp.ecommerceapp.exception.MerchantNotFoundException;
 import org.jsp.ecommerceapp.exception.UserNotFoundException;
+import org.jsp.ecommerceapp.model.Merchant;
 import org.jsp.ecommerceapp.model.User;
+import org.jsp.ecommerceapp.util.AccountStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import net.bytebuddy.utility.RandomString;
 @Service
 public class UserService {
 	    @Autowired
 	    private UserDao userdao;
+	    @Autowired
+	    private EcommerceAppEmailService mailservice;
 
-	    public ResponseEntity<ResponseStructure<User>> saveUser(User user) {
-	        ResponseStructure<User> structure = new ResponseStructure<>();
-	        structure.setBody(userdao.saveUser(user));
-	        structure.setMessage("User Saved");
-	        structure.setStatusCode(HttpStatus.CREATED.value());
-	        return new ResponseEntity<ResponseStructure<User>>(structure, HttpStatus.CREATED);
-	    }
+	    public ResponseEntity<ResponseStructure<User>> saveUser(User user,HttpServletRequest request) {
+	    	 ResponseStructure<User> structure = new ResponseStructure<>();
+		        user.setStatus(AccountStatus.IN_ACTIVE.toString());
+		        user.setToken(RandomString.make(45));
+		        structure.setBody(userdao.saveUser(user));
+		        String message= mailservice.sendWelcomeMail(user, request);
+		        structure.setMessage("User Saved");
+		        structure.setStatusCode(HttpStatus.CREATED.value());
+		        return new ResponseEntity<ResponseStructure<User>>(structure, HttpStatus.CREATED);
+		    }
 
 	    
 	    public ResponseEntity<ResponseStructure<User>> updateUser(User user) {
@@ -73,6 +85,26 @@ public class UserService {
 			structure.setBody(null);
 			structure.setStatusCode(HttpStatus.NOT_FOUND.value());
 			return new ResponseEntity<ResponseStructure<User>>(structure, HttpStatus.NOT_FOUND);
+		}
+
+
+		public ResponseEntity<ResponseStructure<String>> activate(String token) {
+			Optional<User> recMerchant=userdao.findByToken(token);
+			ResponseStructure<String> structure =new ResponseStructure<>();
+			if(recMerchant.isPresent()) { 
+				User user = recMerchant.get();
+				user.setStatus(AccountStatus.ACTIVE.toString());
+				user.setToken(null);
+				userdao.saveUser(user);
+	             structure.setBody("User Found");
+	             structure.setMessage("Account Verified");
+	             structure.setStatusCode(HttpStatus.ACCEPTED.value());
+	             return new ResponseEntity<ResponseStructure<String>>(structure,HttpStatus.ACCEPTED);
+				
+		}
+		
+		throw new UserNotFoundException("INVALID URL");
+
 		}
 
 	    

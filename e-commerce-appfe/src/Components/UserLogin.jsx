@@ -21,6 +21,7 @@ const UserLogin = () => {
       .then((res) => {
         console.log(res);
         navigate("/userhomepage")
+        localStorage.setItem("User",JSON.stringify(res.data.body))
         alert("User Login Successfully");
       })
       .catch((err) => {
