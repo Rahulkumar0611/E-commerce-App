@@ -2,10 +2,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: burlywood;
+    
     height: 80px;
     padding: 0px 50px;
 }
+
 .navbar h1{
     color: brown;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;

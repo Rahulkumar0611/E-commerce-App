@@ -24,7 +24,6 @@ function App() {
         <Route path="/merchanthomepage/*" element={<Protect Child={Merchanthomepage}/>}></Route>
         <Route path="/userhomepage/*" element={<Userhomepage/>}></Route>
         <Route path="usersignup" element={<Usersignup/>}></Route>
-        
       </Routes>
       </BrowserRouter>
     </div>

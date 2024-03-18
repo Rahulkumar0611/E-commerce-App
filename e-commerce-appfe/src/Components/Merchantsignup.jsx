@@ -59,7 +59,7 @@ const Merchantsignup = () => {
           value={email}
           onChange={(e) => setemail(e.target.value)}
           type="text"
-          placeholder="Enter your password"
+          placeholder="Enter your email id"
         />
         <label htmlFor="">Password</label>
         <input

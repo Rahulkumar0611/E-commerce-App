@@ -4,6 +4,7 @@ import React from 'react'
  function Protect({Child}) {
    
   let x=localStorage.getItem("Merchant")
+  
   let verifyProtect=()=>{
    if(x==null){
        return false;

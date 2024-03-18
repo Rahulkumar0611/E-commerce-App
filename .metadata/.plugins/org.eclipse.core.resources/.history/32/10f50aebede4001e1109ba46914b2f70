@@ -1,0 +1,22 @@
+package org.jsp.ecommerceapp.model;
+
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Address {
+	private int id;
+    private String  landmark;
+    private String buildingname;
+    private int housenum;
+    private String Addresstype;
+    private String city;
+    private String state;
+    private String country;
+    private long pincode;
+}

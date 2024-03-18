@@ -43,7 +43,7 @@ const Addproducts = () => {
         <label htmlFor="">Cost</label>
         <input value={cost} onChange={(e) => setcost(e.target.value)} type="text" required placeholder='Enter cost' />
         <label htmlFor="">image_url</label>
-        <input value={image_url} onChange={(e) => setimageurl(e.target.value)} type="text" required placeholder='Enter image url ' />
+        <input id='input1' value={image_url} onChange={(e) => setimageurl(e.target.value)} type="text" required placeholder='Enter image url ' />
         <button className="btn btn-outline-info">Submit</button>
         </form>
     </div>

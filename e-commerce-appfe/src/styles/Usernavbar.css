@@ -2,16 +2,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(135, 222, 196);
+   background-color: rgb(40,116,240);
     height: 80px;
     padding: 0px 50px;
 }
 .navbar h1{
-    color: rgb(151, 42, 165);
+    color: white;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .navbar span{
-    color: beige;
+    color: white;
 }
 .navbar a{
     color: black;
@@ -20,6 +20,6 @@
 }
 .option a{
     font-size: 25px;
-    color: rgb(151, 42, 165);
+    color: white;
   
 }

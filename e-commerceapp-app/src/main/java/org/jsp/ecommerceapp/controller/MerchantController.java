@@ -43,4 +43,6 @@ public class MerchantController {
 	    public  ResponseEntity<ResponseStructure<String>> activate(@RequestParam  String token){
 	 	   	return merchantService.activate(token);
 	 	   }
+	    
+	    
 	}

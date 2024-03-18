@@ -61,6 +61,10 @@ public class MerchantService {
 			Optional<Merchant> recMerchant = merchantDao.verify(phone, password);
 			ResponseStructure<Merchant> structure = new ResponseStructure<>();
 			if (recMerchant.isPresent()) {
+				Merchant m=recMerchant.get();
+				if(m.getStatus().equals(AccountStatus.IN_ACTIVE.toString())) {
+					throw new IllegalStateException("Account is not Activated");
+				}
 				structure.setMessage("Verification Succesfull");
 				structure.setBody(recMerchant.get());
 				structure.setStatusCode(HttpStatus.OK.value());

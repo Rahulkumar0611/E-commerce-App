@@ -31,7 +31,7 @@ function verifyMerchant(e){
   return (
     <div className="merchantlogin">
       <Form>
-        <h1>Merchant Login</h1>
+        <h2>Merchant Login</h2>
         <Form.Group className="mb-3" controlId="fromGroupEmail">
           <Form.Label>Phone no</Form.Label>
           <Form.Control value={phone}  onChange={(e)=>setphone(e.target.value)}  type="tel" placeholder="Enter phone no" />
