@@ -1,10 +1,18 @@
 package org.jsp.ecommerceapp.model;
 
 import jakarta.persistence.Entity;
+
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 @Data
 @Entity
@@ -26,4 +34,8 @@ public class User {
 	 private String password;
 	 private String status;
 	 private String token;
+	 
+	 @OneToMany(mappedBy = "user")
+	 @JsonIgnore
+	 private List<Address> address;
 }

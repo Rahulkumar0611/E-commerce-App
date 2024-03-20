@@ -1,0 +1,30 @@
+.userAddress form {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    padding: 30px 50px;
+    height: 85vh;
+  }
+  
+
+  .userAddress {
+    display: flex;
+    align-items: start;
+    height: 80vh;
+    margin-left: 20px;
+
+  }
+  .userAddress button {
+    width: 5%;
+    margin-left: 0px;
+    margin-top: 17px;
+    margin-right: 27px;
+    
+  }
+  
+  .userAddress button:hover{
+    color: white;
+  }
+  .search{
+    
+    display: flex;
+  }

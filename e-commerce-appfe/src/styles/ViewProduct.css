@@ -1,31 +1,44 @@
-.maindiv{
-    justify-content: first baseline;
-    margin-bottom: 30px;
-    display: inline-block;
-    width: 300px;
-    vertical-align: middle;
-    margin-left: 110px;
-    margin-right: 60px;
-   margin-top: 30px;
-}
-.maindiv img{
-    margin-right: 70px;
-}
-.maindiv p{
-   
-    margin-top: 20px;
-    font-size: 17px;
-}
-#cost1{
 
+.productview{
+    height: 400px;
+    width:280px;
+}
+.productview img{
+    height: 220px;
+    width: 180px;
+    transition: 2s;
+}
+#name{
+    height: 60px;
+}
+.disp{
+    display: grid;
+    grid-template-columns: 320px 320px 320px;
+    grid-template-rows: 500px 500px 500px ;
+    justify-content: space-around;
+}
+#desc{
+    height: 50px;
     display: block;
-  margin-top: 20px;
+    overflow: hidden;
 }
-.maindiv button{
-    margin-top: 20px;
-    height: 40px;
-    width: 130px;
-    color: blue;
-    margin-left: 10px;
-
+#cost{
+    font-size: larger;
+    font-weight: bold;
+    font-family: cursive;
 }
+#category{
+    position: relative;
+    color: white;
+    padding: 0px 10px;
+    border-radius: 10px;
+    top:-90px;
+    background-color: mediumblue;
+}
+.productview img:hover{
+  transform: rotateY('180deg');
+}
+.productview button{
+    width: 90px;
+    margin-right: 20px;
+} 

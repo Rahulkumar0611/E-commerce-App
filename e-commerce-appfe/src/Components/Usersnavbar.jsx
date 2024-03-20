@@ -25,8 +25,10 @@ const Usersnavbar = () => {
 
             <Dropdown.Menu>
                 <Dropdown.Item href="/userhomepage/updateuser">Edit User</Dropdown.Item>
+                <Dropdown.Item href="/userhomepage/address">Address</Dropdown.Item>
                 <Dropdown.Item href="/">logout</Dropdown.Item>
             </Dropdown.Menu>
+            
         </Dropdown>
     </div>
     </div>

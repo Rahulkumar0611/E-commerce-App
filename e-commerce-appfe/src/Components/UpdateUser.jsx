@@ -23,6 +23,7 @@ const UpdateUser = () => {
       setAge(user.age);
     }
   }, []);
+  
   const updateData = (e) => {
     e.preventDefault();
     const data = { name, email, age, gender, phone, password, id };
@@ -33,7 +34,7 @@ const UpdateUser = () => {
       })
       .catch((err) => {
         console.log(err);
-        alert("Data Not Found");
+        alert("Data Not Found"  );
       });
   };
 
