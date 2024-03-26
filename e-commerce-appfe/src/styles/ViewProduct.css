@@ -1,6 +1,6 @@
 
 .productview{
-    height: 400px;
+    height: 350px;
     width:280px;
 }
 .productview img{
@@ -21,6 +21,7 @@
     height: 50px;
     display: block;
     overflow: hidden;
+    margin-right: 50px;
 }
 #cost{
     font-size: larger;
@@ -37,8 +38,19 @@
 }
 .productview img:hover{
   transform: rotateY('180deg');
+  cursor: pointer ;
 }
 .productview button{
     width: 90px;
     margin-right: 20px;
 } 
+.search{
+    margin-top: 20px;
+}
+.productview button:hover{
+    color: white;
+}
+ hr{
+    color: rgb(235, 18, 18);
+    height:6px;
+}

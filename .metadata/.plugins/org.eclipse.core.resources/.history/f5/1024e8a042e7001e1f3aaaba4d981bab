@@ -1,0 +1,80 @@
+package org.jsp.ecommerceapp.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.jsp.ecommerceapp.dao.AddressDao;
+import org.jsp.ecommerceapp.dao.UserDao;
+import org.jsp.ecommerceapp.dto.ResponseStructure;
+import org.jsp.ecommerceapp.exception.AddressNotFoundException;
+import org.jsp.ecommerceapp.exception.UserNotFoundException;
+import org.jsp.ecommerceapp.model.Address;
+import org.jsp.ecommerceapp.model.Merchant;
+import org.jsp.ecommerceapp.model.User;
+import org.jsp.ecommerceapp.util.AccountStatus;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import jakarta.servlet.http.HttpServletRequest;
+import net.bytebuddy.utility.RandomString;
+
+@Service
+public class AddressService {
+	 @Autowired
+	 private AddressDao addressDao;
+	 @Autowired
+		private UserDao userdao;
+	 
+	 
+	 public ResponseEntity<ResponseStructure<Address>> saveAddress(Address add, int user_id) {
+			Optional<User> recUser = userdao.findById(user_id);
+			ResponseStructure<Address> structure = new ResponseStructure<>();
+			if (recUser.isPresent()) {
+				User user = recUser.get();
+				user.getAddress().add(add);
+				add.setUser(user);
+				structure.setBody(addressDao.saveAddress(add));
+				structure.setMessage("Address Added");
+				structure.setStatusCode(HttpStatus.CREATED.value());
+				return new ResponseEntity<ResponseStructure<Address>>(structure, HttpStatus.CREATED);
+			}
+			throw new UserNotFoundException("cannot add Address as User Id is Invalid");
+		}
+		
+	 
+	 public ResponseEntity<ResponseStructure<Address>> updateAddress(Address address) {
+			Optional<Address> recaddress = addressDao.findByUserId();
+	        ResponseStructure<Address> structure = new ResponseStructure<>();
+	        if (recaddress.isPresent()) {
+	        	Address dbAddress = recaddress.get();
+	        	 dbAddress.setBuildingname(address.getBuildingname());
+	        	 dbAddress.setCity(address.getCity());
+	        	 dbAddress.setCountry(address.getCountry());
+	        	 dbAddress.setHousenumber(address.getHousenumber());
+	        	 dbAddress.setPincode(address.getPincode());
+	        	 dbAddress.setAddresstype(address.getAddresstype());
+	        	 dbAddress.setState(address.getState());
+	        	 dbAddress.setLandmark(address.getLandmark());
+	        	 structure.setMessage("Merchant Updated");
+				 structure.setBody(addressDao.saveAddress(address));
+				 structure.setStatusCode(HttpStatus.ACCEPTED.value());
+	        }
+					return new ResponseEntity<ResponseStructure<Address>>(structure, HttpStatus.ACCEPTED);
+	 }
+	 public ResponseEntity<ResponseStructure<List<Address>>> findAddressByUserId(int user_id) {
+			ResponseStructure<List<Address>> structure = new ResponseStructure<>();
+			List<Address> address =addressDao.findByUserId(user_id);
+			if (address.isEmpty()) {
+				throw new AddressNotFoundException("No Address Found for entered User Id");
+			}
+			structure.setBody(address);
+			structure.setMessage("List of Address for user Id");
+			structure.setStatusCode(HttpStatus.OK.value());
+			return new ResponseEntity<ResponseStructure<List<Address>>>(structure, HttpStatus.OK);
+		}
+	 
+	 
+}

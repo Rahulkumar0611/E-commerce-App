@@ -13,6 +13,16 @@ public class ProductDao {
 
 	@Autowired
 	private ProductRepository productRepository;
+	
+	
+	public boolean deleteById(int id) {
+		Optional<Product> recProduct = findById(id);
+		if (recProduct.isPresent()) {
+			productRepository.delete(recProduct.get());
+			return true;
+		}
+		return false;
+	}
 
 	public Product saveProduct(Product product) {
 		return productRepository.save(product);
@@ -37,4 +47,7 @@ public class ProductDao {
 	public List<Product> findByCategory(String category) {
 		return productRepository.findByCategory(category);
 	}
+	
+	
+	
 }

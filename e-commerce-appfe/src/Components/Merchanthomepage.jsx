@@ -4,6 +4,7 @@ import { Routes,Route } from "react-router-dom";
 import Productview from './Productview';
 import UpdateMerchant from "./UpdateMerchant"
 import Addproducts from './Addproducts';
+import UpdateProduct from './UpdateProduct';
 
 const Merchanthomepage = () => {
   return (
@@ -13,6 +14,7 @@ const Merchanthomepage = () => {
     <Route path="/productview" element={<Productview/>}></Route>
    <Route path="/updatemerchant" element={<UpdateMerchant/>}></Route>
    <Route path='/addproduct' element={<Addproducts/>}></Route>
+   <Route path="/updateproduct/:id" element={<UpdateProduct />}></Route>
    </Routes>
     </div>
   )

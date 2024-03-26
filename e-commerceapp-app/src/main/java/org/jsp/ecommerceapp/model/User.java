@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
@@ -38,4 +39,19 @@ public class User {
 	 @OneToMany(mappedBy = "user")
 	 @JsonIgnore
 	 private List<Address> address;
+	 
+	 @JoinTable(name="user_cart" , joinColumns={@JoinColumn(name="user_id")}, 
+			 inverseJoinColumns = {@JoinColumn(name="product_id")} )
+	 @OneToMany
+	 private List<Product> cart;
+	 
+
+	 @JoinTable(name="user_wishList" , joinColumns={@JoinColumn(name="user_id")}, 
+			 inverseJoinColumns = {@JoinColumn(name="product_id")} )
+	 @OneToMany
+	 private List<Product> wishList;
+	 @OneToMany(mappedBy = "user")
+	 private List<UserOrder> orders;
+	 
+	 
 }

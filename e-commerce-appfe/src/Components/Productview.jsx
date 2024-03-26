@@ -2,10 +2,19 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import "../styles/ViewProduct.css";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useNavigate } from "react-router-dom";
 
 const Productview = () => {
   let [content, setContent] = useState([]);
+  
   let admin = JSON.parse(localStorage.getItem("Merchant"));
+
+
+  let navigate=useNavigate()
+
+  
 
   useEffect(() => {
     axios
@@ -19,6 +28,16 @@ const Productview = () => {
       });
   }, []);
 
+let removeData=(name,id)=>{
+  axios.delete(`http://localhost:8080/products/${id}`)
+  .then((res)=>{
+    console.log(res.data.body);
+    alert(`${name} removed successfully`)
+  })
+  .catch((err)=>{
+    console.log(err);
+  })
+}
 
 
 
@@ -38,6 +57,10 @@ const Productview = () => {
       console.log(res.data.body)
       setContent(res.data.body)
     })
+  }
+
+  let editData=(id)=>{
+    navigate(`/merchanthomepage/updateproduct/${id}`)
   }
 
   return (
@@ -69,9 +92,11 @@ const Productview = () => {
               <br />
             </div>
             <span id='desc'>{x.description}</span>
-              <button className="btn btn-outline-info">Edit</button>
-              <button className="btn btn-outline-danger">Delete</button>
+            <EditIcon  onClick={()=>{editData(x.id)}} />
+           <DeleteIcon onClick={()=>{removeData(x.name,x.id)}} />
+            
             </div>
+            
           </div>
        
         );
