@@ -7,6 +7,7 @@ import UserAddress from './UserAddress';
 import EditAddress from './EditAddress';
 import AddAddress from './AddAddress';
 import AllProduct from './AllProduct';
+import ReadContent from './ReadContent';
 
 const Userhomepage = () => {
   return (
@@ -19,7 +20,7 @@ const Userhomepage = () => {
     <Route path="/address/editaddress" element={<EditAddress/>}></Route>
     <Route path="/address/addAddress" element={<AddAddress/>}></Route>
     <Route path="/" element={<AllProduct/>}></Route>
-    
+    <Route path='/readData/:id' element={<ReadContent/>}/>
    </Routes>
     </div>
   )

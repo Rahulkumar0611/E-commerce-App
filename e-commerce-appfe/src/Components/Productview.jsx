@@ -62,6 +62,7 @@ let removeData=(name,id)=>{
   let editData=(id)=>{
     navigate(`/merchanthomepage/updateproduct/${id}`)
   }
+  
 
   return (
     <div className="disp">
@@ -87,7 +88,7 @@ let removeData=(name,id)=>{
               <img src={x.image_url} alt="" />
             </div>
             <div className="desc">
-              <h4 id='name'>{x.name} || {x.brand}</h4>
+              <h4 id='name' >{x.name} || {x.brand}</h4>
               <span id='cost'><sup><b>₹</b></sup>{x.cost}</span>
               <br />
             </div>

@@ -68,7 +68,7 @@ public class ProductController {
 	}
 	@PutMapping("/wishlist/{user_id}/{product_id}")
 	public ResponseEntity<ResponseStructure<String>> addToWishList(@PathVariable int user_id, @PathVariable int product_id){
-		return productService.addToCart(user_id, product_id);
+		return productService.addToWishList(user_id, product_id);
 	}
 	
 	@PutMapping

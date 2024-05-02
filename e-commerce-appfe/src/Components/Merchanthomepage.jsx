@@ -5,6 +5,8 @@ import Productview from './Productview';
 import UpdateMerchant from "./UpdateMerchant"
 import Addproducts from './Addproducts';
 import UpdateProduct from './UpdateProduct';
+import ReadContent from './ReadContent';
+
 
 const Merchanthomepage = () => {
   return (
@@ -15,6 +17,7 @@ const Merchanthomepage = () => {
    <Route path="/updatemerchant" element={<UpdateMerchant/>}></Route>
    <Route path='/addproduct' element={<Addproducts/>}></Route>
    <Route path="/updateproduct/:id" element={<UpdateProduct />}></Route>
+   
    </Routes>
     </div>
   )

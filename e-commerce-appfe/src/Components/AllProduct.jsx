@@ -47,6 +47,10 @@ let navigate=useNavigate()
       setContent(res.data.body)
     })
   }
+  let readData = (id) =>{
+    navigate(`/userhomepage/readData/${id}`)
+   
+  }
 
 //   let editData=(id)=>{
 //     navigate(`/merchanthomepage/updateproduct/${id}`)
@@ -76,7 +80,7 @@ let navigate=useNavigate()
               <img src={x.image_url} alt="" />
             </div>
             <div className="desc">
-              <h4 id='name'>{x.name} || {x.brand}</h4>
+              <h4 id='name'onClick={()=>{readData(x.id)}}>{x.name} || {x.brand}</h4>
               <span id='cost'><sup><b>₹</b></sup>{x.cost}</span>
               <br />
             </div>
